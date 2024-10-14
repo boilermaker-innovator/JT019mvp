@@ -3,90 +3,162 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Job Teaser Form</title>
+    <title>Job Teaser Form and Preview</title>
     <style>
-    .job-teaser {
-        max-width: 600px;
-        margin: 20px auto;
-        background-color: white;
-        border-radius: 8px;
-        box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        overflow: hidden;
-    }
-    .job-header {
-        background-color: #0056b3;
-        color: white;
-        padding: 15px;
-        display: flex;
-        align-items: center;
-    }
-    .job-logo {
-        width: 60px;
-        height: 60px;
-        object-fit: contain;
-        background-color: white;
-        border-radius: 50%;
-        margin-right: 15px;
-    }
-    .job-info {
-        flex-grow: 1;
-    }
-    .job-title {
-        font-size: 1.4em;
-        font-weight: bold;
-        margin: 0;
-    }
-    .job-company, .job-location {
-        font-size: 1em;
-        margin: 5px 0 0;
-    }
-    .tab-container {
-        display: flex;
-        background-color: #f1f1f1;
-    }
-    .tab {
-    flex-grow: 1;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    padding: 12px 16px;
-    transition: 0.3s;
-    font-size: 16px;
-    font-weight: bold;
-    background-color: #f1f1f1;
-    color: #333;
-}
-.tab:hover {
-    background-color: #ddd;
-}
-.tab.active {
-    background-color: #0056b3;
-    color: white;
-    border-bottom: 3px solid #003d82;
-}
-    .tab-content {
-        display: none;
-        padding: 15px;
-        height: 150px;
-        overflow-y: auto;
-    }
-    .tab-content.active {
-        display: block;
-    }
-    .apply-button {
-        display: block;
-        width: 90%;
-        max-width: 200px;
-        margin: 15px auto;
-        padding: 10px;
-        background-color: #0056b3;
-        color: white;
-        text-align: center;
-        text-decoration: none;
-        font-weight: bold;
-        border-radius: 5px;
-    }
-</style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f8ff;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .form-container, .preview-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        .form-container {
+            flex-basis: 100%;
+        }
+        .preview-container {
+            flex-basis: 48%;
+        }
+        h1, h2 {
+            color: #0056b3;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        input[type="text"], input[type="url"], textarea {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        textarea {
+            height: 100px;
+            resize: vertical;
+        }
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        button {
+            background-color: #0056b3;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #003d82;
+        }
+        #clearFormButton {
+            background-color: #dc3545;
+        }
+        #clearFormButton:hover {
+            background-color: #c82333;
+        }
+        .job-teaser, .job-card {
+            max-width: 100%;
+            margin: 20px 0;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .job-header {
+            background-color: #0056b3;
+            color: white;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+        }
+        .job-logo {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+            background-color: white;
+            border-radius: 50%;
+            margin-right: 15px;
+        }
+        .job-info {
+            flex-grow: 1;
+        }
+        .job-title {
+            font-size: 1.4em;
+            font-weight: bold;
+            margin: 0;
+        }
+        .job-company, .job-location {
+            font-size: 1em;
+            margin: 5px 0 0;
+        }
+        .tab-container {
+            display: flex;
+            background-color: #f1f1f1;
+        }
+        .tab {
+            flex-grow: 1;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 10px 12px;
+            transition: 0.3s;
+            font-size: 14px;
+            font-weight: bold;
+            background-color: inherit;
+            color: #0056b3;
+        }
+        .tab:hover {
+            background-color: #ddd;
+        }
+        .tab.active {
+            background-color: white;
+            border-bottom: 3px solid #0056b3;
+        }
+        .tab-content {
+            display: none;
+            padding: 15px;
+            height: 150px;
+            overflow-y: auto;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .apply-button {
+            display: block;
+            width: 90%;
+            max-width: 200px;
+            margin: 15px auto;
+            padding: 10px;
+            background-color: #0056b3;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+        }
+        .job-card-content {
+            padding: 15px;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -97,37 +169,42 @@
                 <input type="text" id="jobTitle" name="jobTitle" value="Boilermaker" required>
 
                 <label for="company">Company Name:</label>
-                <input type="text" id="company" name="company" value="ELS - Exclusive Labour Services" required>
+                <input type="text" id="company" name="company" value="Industrial Solutions Ltd." required>
 
                 <label for="location">Location:</label>
-                <input type="text" id="location" name="location" value="Welshpool, WA" required>
+                <input type="text" id="location" name="location" value="Perth, Western Australia" required>
 
                 <label for="logoUrl">Company Logo URL:</label>
-                <input type="url" id="logoUrl" name="logoUrl" value="https://i.ibb.co/4s0GW9g/IMG-1259.jpg" required>
+                <input type="url" id="logoUrl" name="logoUrl" value="https://example.com/logo.png" required>
 
                 <label for="about">About:</label>
-                <textarea id="about" name="about" required>Join our team of skilled boilermakers at ELS. We offer exciting projects and a supportive work environment in Welshpool, WA. Full-time position available.</textarea>
+                <textarea id="about" name="about" required>Join our team of skilled boilermakers at Industrial Solutions Ltd. We're a leading industrial services provider, offering challenging projects and a safety-first work environment.</textarea>
 
                 <label for="role">Role:</label>
-                <textarea id="role" name="role" required>- Fabricate and assemble boilers and tanks
-- Perform MIG, TIG, and stick welding
-- Read technical drawings
-- Conduct quality control checks</textarea>
+                <textarea id="role" name="role" required>- Fabricate, assemble, and repair boilers, tanks, and other vessels
+- Interpret technical drawings and specifications
+- Perform high-quality welding using various techniques
+- Conduct inspections and quality control checks
+- Collaborate with other trades in project execution</textarea>
 
                 <label for="requirements">Requirements:</label>
-                <textarea id="requirements" name="requirements" required>- Trade Certificate in Boilermaking
-- 3+ years experience
-- Proficient in various welding techniques
-- Valid driver's license</textarea>
+                <textarea id="requirements" name="requirements" required>- Certified Boilermaker qualification
+- Minimum 3 years of experience in industrial settings
+- Proficiency in various welding techniques (MIG, TIG, Stick)
+- Strong understanding of safety protocols and procedures
+- Ability to read and interpret technical drawings
+- Valid driver's license and own transportation</textarea>
 
                 <label for="benefits">Benefits:</label>
-                <textarea id="benefits" name="benefits" required>- Competitive salary: $75K-$95K
-- Health and dental insurance
+                <textarea id="benefits" name="benefits" required>- Competitive salary based on experience
+- Opportunity for overtime and weekend work
+- Comprehensive health and dental insurance
 - Superannuation contributions
-- Ongoing training opportunities</textarea>
+- Ongoing training and professional development
+- Career growth opportunities within a growing company</textarea>
 
                 <label for="applyUrl">Apply URL:</label>
-                <input type="url" id="applyUrl" name="applyUrl" value="https://els.com.au/careers/apply" required>
+                <input type="url" id="applyUrl" name="applyUrl" value="https://example.com/apply" required>
 
                 <div class="button-container">
                     <button type="submit">Update Preview</button>
@@ -136,16 +213,18 @@
             </form>
         </div>
 
-        <h2>Tabbed Job Teaser Preview (Automated)</h2>
-        <div id="jobTeaser" class="job-teaser">
-    <!-- Job teaser content will be inserted here by JavaScript -->
-</div>
-            <!-- Tabbed preview content will be inserted here -->
+        <div class="preview-container">
+            <h2>Automated Job Teaser (for social media)</h2>
+            <div id="automatedJobTeaser" class="job-teaser">
+                <!-- Automated job teaser content will be inserted here -->
+            </div>
         </div>
 
-        <h2>Job Teaser Card Preview (Static)</h2>
-        <div class="preview-container" id="cardPreview">
-            <!-- Card preview content will be inserted here -->
+        <div class="preview-container">
+            <h2>Job Teaser Card</h2>
+            <div id="jobTeaserCard" class="job-card">
+                <!-- Job teaser card content will be inserted here -->
+            </div>
         </div>
     </div>
 
@@ -157,44 +236,50 @@
         function updatePreviews() {
             const formData = new FormData(document.getElementById('jobTeaserForm'));
             
-            // Update Tabbed Preview
-            document.getElementById('tabbedPreview').innerHTML = `
+            // Update Automated Job Teaser
+            document.getElementById('automatedJobTeaser').innerHTML = `
                 <div class="job-header">
+                    <img src="${formData.get('logoUrl')}" alt="${formData.get('company')} logo" class="job-logo">
                     <div class="job-info">
                         <h2 class="job-title">${formData.get('jobTitle')}</h2>
                         <div class="job-company">${formData.get('company')}</div>
                         <div class="job-location">${formData.get('location')}</div>
                     </div>
-                    <img src="${formData.get('logoUrl')}" alt="${formData.get('company')} logo" class="job-logo">
                 </div>
                 <div class="tab-container">
-                    ${tabs.map(tab => `<button class="tab" onclick="openTab(event, '${tab}')">${tab.charAt(0).toUpperCase() + tab.slice(1)}</button>`).join('')}
+                    ${tabs.map((tab, index) => `
+                        <button class="tab${index === 0 ? ' active' : ''}" onclick="openTab(event, '${tab}')">
+                            ${tab.charAt(0).toUpperCase() + tab.slice(1)}
+                        </button>
+                    `).join('')}
                 </div>
-                ${tabs.map(tab => `
-                    <div id="${tab}" class="tab-content">
+                ${tabs.map((tab, index) => `
+                    <div id="${tab}" class="tab-content${index === 0 ? ' active' : ''}">
                         <p>${formData.get(tab).replace(/\n/g, '<br>')}</p>
                     </div>
                 `).join('')}
                 <a href="${formData.get('applyUrl')}" class="apply-button" target="_blank">Apply Now</a>
             `;
 
-            // Update Card Preview
-            document.getElementById('cardPreview').innerHTML = `
+            // Update Job Teaser Card
+            document.getElementById('jobTeaserCard').innerHTML = `
                 <div class="job-header">
+                    <img src="${formData.get('logoUrl')}" alt="${formData.get('company')} logo" class="job-logo">
                     <div class="job-info">
                         <h2 class="job-title">${formData.get('jobTitle')}</h2>
                         <div class="job-company">${formData.get('company')}</div>
                         <div class="job-location">${formData.get('location')}</div>
                     </div>
-                    <img src="${formData.get('logoUrl')}" alt="${formData.get('company')} logo" class="job-logo">
                 </div>
                 <div class="job-card-content">
-                    ${tabs.map(tab => `
-                        <div class="job-card-section">
-                            <h3>${tab.charAt(0).toUpperCase() + tab.slice(1)}</h3>
-                            <p>${formData.get(tab).replace(/\n/g, '<br>')}</p>
-                        </div>
-                    `).join('')}
+                    <h3>About</h3>
+                    <p>${formData.get('about')}</p>
+                    <h3>Role</h3>
+                    <p>${formData.get('role').replace(/\n/g, '<br>')}</p>
+                    <h3>Requirements</h3>
+                    <p>${formData.get('requirements').replace(/\n/g, '<br>')}</p>
+                    <h3>Benefits</h3>
+                    <p>${formData.get('benefits').replace(/\n/g, '<br>')}</p>
                 </div>
                 <a href="${formData.get('applyUrl')}" class="apply-button" target="_blank">Apply Now</a>
             `;
@@ -203,17 +288,16 @@
         }
 
         function openTab(evt, tabName) {
-            var i, tabcontent, tablinks;
-            tabcontent = document.getElementsByClassName("tab-content");
-            for (i = 0; i < tabcontent.length; i++) {
-                tabcontent[i].style.display = "none";
+            const tabcontent = document.getElementsByClassName("tab-content");
+            for (let i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].classList.remove("active");
             }
-            tablinks = document.getElementsByClassName("tab");
-            for (i = 0; i < tablinks.length; i++) {
-                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            const tablinks = document.getElementsByClassName("tab");
+            for (let i = 0; i < tablinks.length; i++) {
+                tablinks[i].classList.remove("active");
             }
-            document.getElementById(tabName).style.display = "block";
-            evt.currentTarget.className += " active";
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
         }
 
         function startTabRotation() {
@@ -223,11 +307,11 @@
             currentTab = 0;
             rotationInterval = setInterval(() => {
                 currentTab = (currentTab + 1) % tabs.length;
-                const tabButton = document.querySelector(`.tab[onclick="openTab(event, '${tabs[currentTab]}')"]`);
+                const tabButton = document.querySelector(`.tab:nth-child(${currentTab + 1})`);
                 if (tabButton) {
                     tabButton.click();
                 }
-            }, 2000);
+            }, 3000);
         }
 
         document.getElementById('jobTeaserForm').addEventListener('submit', function(e) {
@@ -240,7 +324,7 @@
             updatePreviews();
         });
 
-        // Initial preview
+        // Initialize previews
         updatePreviews();
 
         // Update preview on input changes
