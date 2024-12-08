@@ -174,8 +174,16 @@
                 <label for="location">Location:</label>
                 <input type="text" id="location" name="location" value="Perth, Western Australia" required>
 
-                <label for="logoUrl">Company Logo URL:</label>
-                <input type="url" id="logoUrl" name="logoUrl" value="https://example.com/logo.png" required>
+                
+<label for="logoUrl">Company Logo:</label>
+<div style="display: flex; gap: 10px;">
+    <input type="url" id="logoUrl" name="logoUrl" style="flex: 1;" value="https://example.com/logo.png" readonly required>
+    <button type="button" class="upload-button" data-target="logoUrl" style="width: auto;">📷 Upload</button>
+    <input type="file" class="file-input hidden" accept="image/*" data-target="logoUrl">
+</div>
+<img class="preview-image hidden" data-preview="logoUrl" style="max-width: 150px; margin-top: 10px;">
+<div class="upload-status" data-status="logoUrl"></div>
+
 
                 <label for="about">About:</label>
                 <textarea id="about" name="about" required>Join our team of skilled boilermakers at Industrial Solutions Ltd. We're a leading industrial services provider, offering challenging projects and a safety-first work environment.</textarea>
@@ -302,6 +310,60 @@
 
         function startTabRotation() {
             if (rotationInterval) {
+                ```javascript
+// ImgBB Upload Functionality
+const API_KEY = '59cd5b2935b5b01bc744b5b0a1d26ee0';
+
+// Setup upload button
+document.querySelector('.upload-button').addEventListener('click', () => {
+    document.querySelector('.file-input').click();
+});
+
+// Handle file selection and upload
+document.querySelector('.file-input').addEventListener('change', async (event) => {
+    const file = event.target.files[0];
+    if (file) {
+        // Show preview
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            const preview = document.querySelector('.preview-image');
+            preview.src = e.target.result;
+            preview.classList.remove('hidden');
+        };
+        reader.readAsDataURL(file);
+
+        // Upload to ImgBB
+        try {
+            const status = document.querySelector('.upload-status');
+            status.textContent = 'Uploading...';
+            
+            const formData = new FormData();
+            formData.append('image', file);
+
+            const response = await fetch(`https://api.imgbb.com/1/upload?key=${API_KEY}`, {
+                method: 'POST',
+                body: formData
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+                document.getElementById('logoUrl').value = data.data.url;
+                status.textContent = 'Upload successful!';
+                status.style.color = 'green';
+                // Trigger the preview update
+                updatePreviews();
+            } else {
+                throw new Error('Upload failed');
+            }
+        } catch (error) {
+            const status = document.querySelector('.upload-status');
+            status.textContent = 'Upload failed. Please try again.';
+            status.style.color = 'red';
+        }
+    }
+});
+
                 clearInterval(rotationInterval);
             }
             currentTab = 0;
